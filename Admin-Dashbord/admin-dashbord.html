@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img width="70px" src="logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Food Panda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <h2>Hi <script>document.write(localStorage.getItem('names'))</script></h2>
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex" role="search">
+                    <button type="button" class="btn-add-Pro" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" id="addProjectButton">Add Project +</button>
+                    <button type="button" class="btn btn-danger ms-3" id="logoutButton">Logout</button>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Your Item Detail</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="itemForm">
+                        <div class="mb-3">
+                            <label for="itemId" class="form-label">Item ID</label>
+                            <input type="text" class="form-control" id="itemId" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemName" class="form-label">Item Name</label>
+                            <input type="text" class="form-control" id="itemName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="restaurantName" class="form-label">Restaurant Name</label>
+                            <input type="text" class="form-control" id="restaurantName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemImage" class="form-label">Item Image URL</label>
+                            <input type="text" class="form-control" id="itemImage" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemCategory" class="form-label">Item Category</label>
+                            <input type="text" class="form-control" id="itemCategory" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemDescription" class="form-label">Item Description</label>
+                            <textarea class="form-control" id="itemDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="itemPrice" class="form-label">Item Price</label>
+                            <input type="number" class="form-control" id="itemPrice" step="0.01" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitItem">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5" id="itemsContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const itemsContainer = document.getElementById('itemsContainer');
+            const submitItemButton = document.getElementById('submitItem');
+            const addProjectButton = document.getElementById('addProjectButton');
+            const itemForm = document.getElementById('itemForm');
+            let editIndex = null;
+            let editCategory = null;
+
+            function createCard(item, index, category) {
+                const card = document.createElement('div');
+                card.className = 'col-12 col-md-6 col-lg-3 mb-4';
+                card.innerHTML = `
+                    <div class="card h-100">
+                        <img src="${item.image}" class="card-img-top" alt="${item.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">ID: ${item.id}</h5>
+                            <h5 class="card-title">${item.name}</h5>
+                            <p class="card-text">${item.description}</p>
+                            <p class="card-text"><small class="text-muted">Price: ${item.price}</small></p>
+                            <button class="btn btn-warning btn-sm edit-item" data-index="${index}" data-category="${category}">Edit</button>
+                            <button class="btn btn-danger btn-sm delete-item" data-index="${index}" data-category="${category}">Delete</button>
+                        </div>
+                    </div>`;
+                itemsContainer.appendChild(card);
+            }
+
+            function loadItems() {
+                const currentRestaurant = localStorage.getItem('currentRestaurant');
+                const restaurants = JSON.parse(localStorage.getItem('restaurants')) || {};
+
+                itemsContainer.innerHTML = '';
+                const categories = restaurants[currentRestaurant] || {};
+
+                for (const category in categories) {
+                    const categoryHeader = document.createElement('h2');
+                    categoryHeader.textContent = category;
+                    itemsContainer.appendChild(categoryHeader);
+
+                    const items = categories[category];
+                    const row = document.createElement('div');
+                    row.className = 'row';
+                    itemsContainer.appendChild(row);
+
+                    items.forEach((item, index) => {
+                        createCard(item, index, category);
+                        row.appendChild(itemsContainer.lastChild);
+                    });
+                }
+            }
+
+            function saveItems(restaurant, categories) {
+                const restaurants = JSON.parse(localStorage.getItem('restaurants')) || {};
+                restaurants[restaurant] = categories;
+                localStorage.setItem('restaurants', JSON.stringify(restaurants));
+            }
+
+            function resetForm() {
+                itemForm.reset();
+                editIndex = null;
+                editCategory = null;
+            }
+
+            submitItemButton.addEventListener('click', () => {
+                const item = {
+                    id: document.getElementById('itemId').value,
+                    name: document.getElementById('itemName').value,
+                    image: document.getElementById('itemImage').value,
+                    category: document.getElementById('itemCategory').value,
+                    description: document.getElementById('itemDescription').value,
+                    price: document.getElementById('itemPrice').value
+                };
+
+                const currentRestaurant = document.getElementById('restaurantName').value;
+                localStorage.setItem('currentRestaurant', currentRestaurant);
+                const restaurants = JSON.parse(localStorage.getItem('restaurants')) || {};
+                const categories = restaurants[currentRestaurant] || {};
+
+                if (!categories[item.category]) {
+                    categories[item.category] = [];
+                }
+
+                if (editIndex === null) {
+                    categories[item.category].push(item);
+                } else {
+                    categories[editCategory][editIndex] = item;
+                }
+
+                saveItems(currentRestaurant, categories);
+                loadItems();
+                resetForm();
+                const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                modal.hide();
+            });
+
+            itemsContainer.addEventListener('click', (event) => {
+                if (event.target.classList.contains('edit-item')) {
+                    const index = event.target.getAttribute('data-index');
+                    const category = event.target.getAttribute('data-category');
+                    const currentRestaurant = localStorage.getItem('currentRestaurant');
+                    const restaurants = JSON.parse(localStorage.getItem('restaurants'));
+                    const categories = restaurants[currentRestaurant];
+
+                    const item = categories[category][index];
+                    document.getElementById('itemId').value = item.id;
+                    document.getElementById('itemName').value = item.name;
+                    document.getElementById('itemImage').value = item.image;
+                    document.getElementById('itemCategory').value = item.category;
+                    document.getElementById('itemDescription').value = item.description;
+                    document.getElementById('itemPrice').value = item.price;
+
+                    editIndex = index;
+                    editCategory = category;
+
+                    const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                    modal.show();
+                } else if (event.target.classList.contains('delete-item')) {
+                    const index = event.target.getAttribute('data-index');
+                    const category = event.target.getAttribute('data-category');
+                    const currentRestaurant = localStorage.getItem('currentRestaurant');
+                    const restaurants = JSON.parse(localStorage.getItem('restaurants'));
+                    const categories = restaurants[currentRestaurant];
+
+                    categories[category].splice(index, 1);
+                    if (categories[category].length === 0) {
+                        delete categories[category];
+                    }
+
+                    saveItems(currentRestaurant, categories);
+                    loadItems();
+                }
+            });
+
+            addProjectButton.addEventListener('click', resetForm);
+
+            loadItems();
+        });
+    </script>
+    <script src="./sign-up-&-login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

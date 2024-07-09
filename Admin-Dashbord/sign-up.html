@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up Page </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        input {
+            display: block;
+            width: calc(100% - 20px);
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: palevioletred;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #ff2b85;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center>
+        <h1>Signup User</h1><br>
+    </center>
+        <label>
+            Name:
+            <br />
+            <input placeholder="Enter Your Name" required class="inputs" type="text" id="name">
+        </label>
+        <br />
+        <label>
+            Email:
+            <br />
+            <input placeholder="Enter Your Email" required class="inputs" type="email" id="email">
+        </label>
+        <br />
+        <label>
+            Password:
+            <br />
+            <input placeholder="Enter Your Password" required class="inputs" type="password" id="password">
+        </label>
+        <br />
+        <button onclick="signup()">Sign up</button>
+        <a class="anchor" href="./login.html">Already Hava Account</a>
+    </div>
+
+    <script src="./sign-up-&-login.js"></script>
+</body>
+</html>

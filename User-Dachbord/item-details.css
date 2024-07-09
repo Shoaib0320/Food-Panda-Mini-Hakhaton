@@ -1,0 +1,71 @@
+/* VIP Styles */
+body {
+    background-color: #f8f9fa; /* Light background color */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    background-color: #343a40; /* Dark navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for navbar */
+}
+
+.navbar-brand img {
+    border-radius: 50%; /* Circular logo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Logo shadow */
+}
+
+.nav-link {
+    color: #6c757d !important; /* White text for navbar links */
+}
+
+.nav-link:hover {
+    color: #ffc107 !important; /* Golden color on hover */
+}
+
+.card {
+    background-color: #ffffff; /* White card background */
+    border: none; /* No border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Elegant shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.card:hover {
+    transform: scale(1.02); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.card-title {
+    color: #343a40; /* Dark text color */
+}
+
+.card-text {
+    color: #6c757d; /* Muted text color */
+}
+
+.btn-primary {
+    background-color: #343a40; /* Dark button color */
+    border: none; /* No border */
+    border-radius: 20px; /* Rounded button */
+    padding: 10px 20px;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.btn-primary:hover {
+    background-color: #ffc107; /* Golden color on hover */
+}
+
+.input-group .btn {
+    background-color: #343a40; /* Dark button color */
+    border: none; /* No border */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.input-group .btn:hover {
+    background-color: #ffc107; /* Golden color on hover */
+}
+
+#itemDetailContainer {
+    max-width: 700px;
+    margin: auto;
+}

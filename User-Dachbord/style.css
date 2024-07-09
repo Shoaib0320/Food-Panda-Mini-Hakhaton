@@ -1,0 +1,236 @@
+/* Signup & Login */
+
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:Arial, Helvetica, sans-serif ;
+    margin: 20px 400px;
+}
+.container {
+    background-color: #fff;
+    padding: 2em;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(10, 10, 10, 0.1);
+    filter: drop-shadow(10px 17px 10px #4d4949);
+}
+
+h1 {
+    margin-bottom: 1em;
+    color: #333;
+    font-size: 24px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5em;
+    color: #555;
+}
+
+.inputs {
+    background-color: #f4f4f4;
+    width: calc(100% - 10px);
+    padding: 0.5em;
+    margin-top: 0.3em;
+    margin-bottom: 1em;
+    border: 1px solid #f4f4f4;
+    border-radius: 20px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.inputs:focus {
+    border-color: #007bff;
+}
+
+button {
+    transition: all 35s ease-in;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.7em 1.5em;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1em;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.anchor {
+    display: block;
+    margin-top: 1em;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.anchor:hover {
+    text-decoration: underline;
+}
+
+/* user=dashbord.html */
+
+/* General styling for VIP look */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa !important;
+}
+
+
+.navbar {
+    background-color: #343a40 !important;
+}
+.navbar-brand img {
+    background-color: #343a40 !important;
+    border-radius: 50%;
+}
+.navbar-brand, .nav-link, .nav-link h2 {
+    color: #ffffff !important;
+}
+
+h2 {
+    color: #fff;
+}
+
+.container {
+    width: 900px;
+    margin-top: 20px;
+}
+
+/* Styling for cards */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: 700;
+    color: #333;
+}
+
+.card-text {
+    color: #333;
+}
+
+.card-body{
+    background-color: #b39b9b;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Ensure three cards per row */
+.col-12.col-md-6.col-lg-3 {
+    flex: 0 0 32%;
+    max-width: 32%;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .col-12.col-md-6.col-lg-3 {
+        flex: 0 0 48%;
+        max-width: 48%;
+    }
+
+    .body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family:Arial, Helvetica, sans-serif ;
+        margin: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-12.col-md-6.col-lg-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .container {
+        width: auto;
+        margin-top: 20px;
+    }
+    .navbar-brand img {
+        display: inline;
+        border-radius: 50%;
+        margin: 10px;
+    }
+    .navbar-toggler{
+        background-color: white !important;
+        color: white !important;
+        border: 1px solid whitesmoke;
+        padding: 5px;
+        margin-top: 0%;
+    }
+
+    .body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family:Arial, Helvetica, sans-serif ;
+        margin: auto;
+    }
+}
+
+
+.vip-card {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.vip-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.vip-card .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+.navbar-toggler{
+    background-color: white !important;
+    color: white !important;
+    border: 1px solid whitesmoke;
+    padding: 5px;
+}
+
+.navbar {
+    background-color: #343a40 !important;
+}
+.navbar-brand img {
+    background-color: #343a40 !important;
+    border-radius: 50%;
+}
+.navbar-brand, .nav-link, .nav-link h2 {
+    color: #ffffff !important;
+}

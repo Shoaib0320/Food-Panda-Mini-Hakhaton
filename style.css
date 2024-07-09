@@ -1,0 +1,57 @@
+.hero{
+    background-image: url('./img/hero-img.jpg');
+    height: 600px;
+    width: 100%;
+    background-size: cover;
+    background-position: right;
+}
+
+.sign-btn{
+    background-color: palevioletred;
+    color: white;
+    padding: 5px 14px;
+    border-radius: 15px;
+    border:1px solid palevioletred;
+}
+
+.sign-user-btn{
+    background-color: white;
+    color: palevioletred;
+    padding: 5px 14px;
+    border-radius: 15px;
+    border:1px solid palevioletred;
+}
+.sign-user-btn:hover{
+  background-color: palevioletred;
+  color: white;
+}
+
+.sign-btn:hover{
+    background-color: white;
+    color: palevioletred;
+}
+
+
+@media (max-width: 576px) {
+
+    .hero{
+        background-image: url('./img/hero-img.jpg');
+        height: 300px;
+        width: auto;
+        background-size: cover;
+        background-position: center;
+    }
+    
+}
+
+@media (max-width: 400px) {
+
+    .hero{
+        background-image: url('./img/hero-img.jpg');
+        height: 250px;
+        width: auto;
+        background-size: cover;
+        background-position: center;
+    }
+    
+}
